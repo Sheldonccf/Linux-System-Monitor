@@ -138,32 +138,36 @@ vector<string> LinuxParser::CpuUtilization() {
   return cpuUtils;
   }
 
-float LinuxParser::CpuUtilization(int pid) {
-  string time;
-  vector<string> times;
-  int iterator = 1;
-  std::ifstream ifstream(kProcDirectory + to_string(pid) + kStatFilename);
-  if (ifstream.is_open()) {
-    while(ifstream >> time) {
-      iterator ++;
-      times.push_back(time);
-      if (iterator == 17) {
-       float total_time = stof(times[13]) + stof(times[14])
-         +stof(times[15]) +stof(times[16]);
-       float uptime = float(LinuxParser::UpTime());
-       float starttime = float(LinuxParser::UpTime(pid));
-        float hertz = float(sysconf(_SC_CLK_TCK));
+//The following code is not used
+
+//float LinuxParser::CpuUtilization(int pid) {
+//  string time;
+//  const float hertz = sysconf(_SC_CLK_TCK);
+ // vector<string> times;
+ // int iterator = 1;
+ // std::ifstream ifstream(kProcDirectory + to_string(pid) + kStatFilename);
+ // if (ifstream.is_open()) {
+  //  std::getline(filestream, line);
+  //  std::istringstream linestream(line);
+ //   while(linestream >> time) {
+  //    iterator ++;
+  //    times.push_back(time);
+  //    if (iterator == 22) {
+  //     float total_time = stof(times[13]) + stof(times[14])
+  //       +stof(times[15]) +stof(times[16]);
+  //     float uptime = float(LinuxParser::UpTime());
+  //     float starttime = stof(times[21]);    
         
-        float seconds = uptime - starttime/hertz;
+  //      float seconds = uptime - starttime/hertz;
         
-        float cpuUtilisProc = 100 * ((total_time/hertz)/seconds);
-         return cpuUtilisProc;
+  //      float cpuUtilisProc = 100 * ((total_time/hertz)/seconds);
+  //       return cpuUtilisProc;
         
-      }
-    }
-  }
+  //    }
+  //  }
+//  }
   
-}
+//}
 
 // TODO: Read and return the total number of processes
 int LinuxParser::TotalProcesses() { 

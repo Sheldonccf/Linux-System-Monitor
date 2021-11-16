@@ -32,6 +32,7 @@ vector<Process>& System::Processes() {
      (*processPtr).push_back(process);
     }
 
+std::sort(processes_.begin(), processes_.end());
     
 return *processPtr;
  }
